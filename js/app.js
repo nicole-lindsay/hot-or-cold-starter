@@ -12,7 +12,7 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
-  	/*random number generator*/
+  	/*random number generator, this needs to be attached to something, not correct at present*/
   	Math.floor((Math.random() * 100) + 1);
 
   	/*---New game button---*/
@@ -20,8 +20,9 @@ $(document).ready(function(){
   		/*needs to revert #feedback, #count, #guessList to original values, and change random number*/ 
   	});
 
-  	/*Guess button*/
+  	/*Guess button, needs to add <li> to #guesslist, increment #count by one, change #feedback to hot/cold or you win*/
   	$("#guessButton").click(function(){
-  		/*needs to add <li> to #guesslist, increment #count by one, change #feedback to hot/cold or you win*/
+  		$("#guessList").append("<li>" + $("#userGuess").val() + "</li>");
+  		$("#userGuess").val("");
   	});
 });
