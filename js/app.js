@@ -1,28 +1,45 @@
+$(document).ready(function() {
 
-$(document).ready(function(){
-	
-	/*--- Display information modal box ---*/
-  	$(".what").click(function(){
-    	$(".overlay").fadeIn(1000);
+    /*--- Display information modal box ---*/
+    $(".what").click(function() {
+        $(".overlay").fadeIn(1000);
 
-  	});
+    });
 
-  	/*--- Hide information modal box ---*/
-  	$("a.close").click(function(){
-  		$(".overlay").fadeOut(1000);
-  	});
+    /*--- Hide information modal box ---*/
+    $("a.close").click(function() {
+        $(".overlay").fadeOut(1000);
+    });
 
-  	/*random number generator, this needs to be attached to something, not correct at present*/
-  	Math.floor((Math.random() * 100) + 1);
+    /*variables reference*/
+    var randomNumber = Math.floor((Math.random() * 100) + 1);
+    console.log(randomNumber);
 
-  	/*---New game button---*/
-  	$(".new").click(function(){
-  		/*needs to revert #feedback, #count, #guessList to original values, and change random number*/ 
-  	});
+    /*---New game button---*/
+    $(".new").click(function() {
+        event.preventDefault();
+        /*needs to revert #feedback, #count, #guessList to original values, and change random number*/
+    });
 
-  	/*Guess button, needs to add <li> to #guesslist, increment #count by one, change #feedback to hot/cold or you win*/
-  	$("#guessButton").click(function(){
-  		$("#guessList").append("<li>" + $("#userGuess").val() + "</li>");
-  		$("#userGuess").val("");
-  	});
+    $("form").on("submit", function(event) {
+        event.preventDefault();
+    });
+
+    /*Guess button, increment #count by one*/
+    $("#guessButton").click(function() {
+        event.preventDefault();
+        var userGuess = $("#userGuess").val();
+        var difference = Math.abs(randomNumber - userGuess);
+        $("#guessList").append("<li>" + userGuess + "</li>");
+        $("#userGuess").val("");
+        if (userGuess == randomNumber) {
+            $("#feedback").text("Winner winner chicken dinner!");
+        } else if (difference >= 1 && difference <= 30) {
+            $("#feedback").text("Hot!");
+        } else if (difference >= 31 && difference <= 70) {
+            $("#feedback").text("Tepid");
+        } else {
+            $("#feedback").text("Cold!");
+        }
+    });
 });
