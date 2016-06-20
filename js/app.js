@@ -38,8 +38,8 @@ $(document).ready(function() {
         $("#userGuess").val("");
         if (isNaN(userGuess)) {
             $("#feedback").text("No dice, I only accept numbers!");
-        } else if (userGuess < 0 && userGuess > 100) {
-            $("#feedback").text("Only numbers 1-100!");
+        } else if (userGuess > 100 || userGuess < 1) {
+            $("#feedback").text("Please choose a number between 1 & 100")
         } else {
             guessCount++
             $("#count").text(guessCount);
